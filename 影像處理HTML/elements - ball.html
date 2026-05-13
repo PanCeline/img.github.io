@@ -1,0 +1,133 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>第九組 影像處理</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Homepage</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">研究動機</a></li>
+							
+							<li><a href="elements - angle.html">揮拍角度處理流程</a></li>
+							<li><a href="generic - angle.html">揮拍角度成果</a></li>
+							
+							<li><a href="elements - ball.html">擊球點處理流程</a></li>
+							<li><a href="generic - ball.html">擊球點成果</a></li>
+							
+							<li><a href="elements.html">AI使用/幕後花絮</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<span class="date">擊球點處理流程</span>
+								</header>
+
+								
+								<!-- Blockquote -->
+									<h2>擊球點處理流程</h2>
+									<h3>Step1</h3>
+									<blockquote>
+									首先輸入原始影像，為了方便後續進行羽球與人物特徵分析，先將彩色影像轉換為
+									<strong>灰階影像</strong>，
+									以降低影像處理的複雜度。<br>
+									</blockquote>
+									
+									<h3>Step2</h3>
+									<blockquote>
+									接著，對灰階影像進行
+									<strong>直方圖均衡化處理</strong>，
+									提升影像的亮度對比，使羽球、人物與背景之間的差異更加明顯。
+									透過此步驟，可以改善原始畫面中因光線不足或亮度不均所造成的影響，
+									提升後續擊球點偵測與動作分析的準確性。
+									</blockquote>
+									<a href="#" class="image fit"><img src="images/點流1.png" alt="" /></a>
+									
+									
+									<h3>Step3</h3>
+									<blockquote>
+									接著，對影像進行<strong>高斯濾波</strong>處理，
+									透過 Gaussian Blur 平滑影像中的雜訊與細小干擾，
+									避免後續邊緣偵測時產生過多不必要的雜訊邊緣。
+									此步驟能讓羽球與人物輪廓更加平滑，有助於提升邊緣偵測的穩定性與準確性。
+									</blockquote>
+									
+									<h3>Step4</h3>
+									<blockquote>
+									完成高斯濾波後，使用<strong> Canny 邊緣偵測</strong>擷取影像中的物體輪廓，
+									初始參數雖然能偵測出人物與羽球邊緣，但仍存在較多雜訊。
+									因此，進一步調整模糊程度與邊緣偵測門檻參數，
+									降低背景雜訊干擾，使羽球與球拍輪廓能更加清楚呈現，提升後續擊球點分析的效果。
+									</blockquote>
+									<a href="#" class="image fit"><img src="images/點流2.png" alt="" /></a>
+									
+									
+									
+									
+									<h3>Step5</h3>
+									<blockquote>
+									完成邊緣偵測後，本研究進一步設定<strong>感興趣區域（ROI）</strong>，
+									只保留可能出現羽球的位置範圍，減少不必要的背景干擾。透過限制搜尋區域，
+									可以降低其他物體或場地線條造成的誤判，同時提升羽球偵測的效率與準確性。
+									</blockquote>
+									
+									<h3>Step6</h3>
+									<blockquote>
+									在 ROI 區域中，利用<strong>輪廓偵測</strong>找出可能的羽球候選物件，
+									並依序進行面積、外框形狀與亮度等條件篩選。
+									由於羽球在畫面中通常較小、接近圓形且亮度較高，
+									因此透過這些特徵可以有效排除雜訊與非羽球物件，最後成功框出實際的擊球點位置。
+									</blockquote>
+									<a href="#" class="image fit"><img src="images/點流3.png" alt="" /></a>
+									
+
+							</section>
+							<ul class="actions special">
+								<li><a href="generic - ball.html" class="button">擊球點成果</a></li>
+							</ul>
+
+					</div>
+
+				
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
